@@ -58,6 +58,7 @@ alias pu='pushd'
 alias rm="${aliases[rm]:-rm} -i"
 alias type='type -a'
 alias ssht='sshuttle --dns -vr pig-monkey.com 0/0'
+alias t='todo'
 
 # ls
 if is-callable 'dircolors'; then
