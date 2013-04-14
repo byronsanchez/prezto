@@ -87,3 +87,10 @@ export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
 
 # Set the default note directory.
 export NOTEDIR=~/documents/notes
+
+#
+# Passwords
+#
+
+# Set the default password directory.
+export PASSDIR=~/pw
