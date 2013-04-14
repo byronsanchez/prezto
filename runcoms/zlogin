@@ -20,3 +20,7 @@ if (( $+commands[fortune] )); then
   print
 fi
 
+# Execute machine-specific bootstrap script.
+if [ -f ~/bin/bootstrap.sh ]; then
+    ~/bin/bootstrap.sh
+fi
