@@ -81,3 +81,9 @@ export PROJECT_HOME="$HOME/projects"
 # Set the default virtualenvwrapper options.
 export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
 
+#
+# Notes
+#
+
+# Set the default note directory.
+export NOTEDIR=~/documents/notes

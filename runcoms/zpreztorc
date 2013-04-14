@@ -26,6 +26,7 @@ zstyle ':prezto:*:*' color 'yes'
 zstyle ':prezto:load' pmodule \
   'git' \
   'python' \
+  'buildfile' \
   'environment' \
   'terminal' \
   'editor' \
@@ -33,6 +34,7 @@ zstyle ':prezto:load' pmodule \
   'directory' \
   'spectrum' \
   'utility' \
+  'notes' \
   'completion' \
   'prompt'
 
