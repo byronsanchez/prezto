@@ -262,6 +262,9 @@ fi
 # Vi Key Bindings
 #
 
+# Change to command-mode with kj.
+bindkey -M viins 'kj' vi-cmd-mode
+
 # Edit command in an external editor.
 bindkey -M vicmd "v" edit-command-line
 
