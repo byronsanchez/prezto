@@ -140,7 +140,7 @@ fi
 # Miscellaneous
 
 # Serves a directory via HTTP.
-alias http-serve='python -m SimpleHTTPServer'
+alias http-serve='python -m http.server'
 
 # Update the pacman mirrorlist with reflector.
 alias update='sudo reflector -l 20 --sort rate --save /etc/pacman.d/mirrorlist && cat /etc/pacman.d/mirrorlist'
