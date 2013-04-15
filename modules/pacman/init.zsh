@@ -33,6 +33,12 @@ fi
 # Aliases
 #
 
+# Quick install.
+alias install="$_pacman_frontend -S"
+
+# Quick upgrade.
+alias upgrade="$_pacman_frontend -Syyu"
+
 # Pacman.
 alias pac='pacman'
 
