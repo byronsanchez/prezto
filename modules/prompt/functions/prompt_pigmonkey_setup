@@ -87,7 +87,7 @@ function prompt_pigmonkey_setup {
 
   # Define prompts.
   PROMPT='
-%F{cyan}%~ %F{blue}${python_info[virtualenv]}
+%B%m%F{yellow}::%b %F{cyan}%~ %F{blue}${python_info[virtualenv]}
 %(?.%F{green}${editor_info[keymap]}%f.%F{red}${editor_info[keymap]}%f) '
 RPROMPT='${vcs_info_msg_0_}  $(battery_charge)'
 
