@@ -1,0 +1,123 @@
+#
+# A simple theme based on PeepCode.
+#
+# Authors:
+#   Geoffrey Grosenbach <boss@topfunky.com>
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#   Peter Hogg <peter@havenaut.net
+#
+
+function +vi-git-status() {
+  # Check for untracked files or updated submodules since vcs_info does not.
+  if [[ -n $(git ls-files --other --exclude-standard 2> /dev/null) ]]; then
+    hook_com[unstaged]=' %F{8}✗%f'
+  fi
+}
+
+function prompt_pigmonkey_precmd {
+  vcs_info
+  python-info
+}
+
+
+# Build the battery charge prompt.
+function battery_charge {
+    # Make sure acpi is installed.
+    hash acpi 2> /dev/null
+
+    if [ $? -eq 0 ]; then
+
+        # Get the battery state.
+        BATTSTATE="$(acpi -b)"
+        BATTPERCENT="$(echo ${BATTSTATE[(w)4]} | sed -r 's/(^[0-9]+).*/\1/')"
+        BATTSTATUS="$(echo ${BATTSTATE[(w)3]})"
+
+        # Set the battery prompt.
+        if [[ "${BATTSTATUS}" = "Discharging," ]]; then
+            BATTPROMPT="${BATTPERCENT}%% ↺"
+        fi
+        if [[ "${BATTSTATUS}" = "Charging," ]]; then
+        BATTPROMPT="${BATTPERCENT}%% ↻"
+        fi
+
+        # Colorize the battery prompt based on percentage.
+        if [[ "${BATTPERCENT}" -lt 15 ]]; then
+            BATTPROMPT="%F{red}$BATTPROMPT%f"
+        elif [[ "${BATTPERCENT}" -lt 60 ]]; then
+            BATTPROMPT="%F{yellow}$BATTPROMPT%f"
+        else
+            BATTPROMPT="%F{green}$BATTPROMPT%f"
+        fi
+
+        # Reset the color after the battery prompt.
+        BATTPROMPT="$BATTPROMPT%{$reset_color%}"
+    fi
+
+    echo $BATTPROMPT
+}
+
+function prompt_pigmonkey_setup {
+  setopt LOCAL_OPTIONS
+  unsetopt XTRACE KSH_ARRAYS
+  prompt_opts=(cr percent subst)
+
+  # Load required functions.
+  autoload -Uz add-zsh-hook
+  autoload -Uz vcs_info
+
+  # Add hook for calling vcs_info before each command.
+  add-zsh-hook precmd prompt_pigmonkey_precmd
+
+  # Set editor mode parameters.
+  zstyle ':prezto:module:editor:info:keymap:primary' format '✼'
+  zstyle ':prezto:module:editor:info:keymap:alternate' format '✎'
+
+  # Set Python virtualenv parameters.
+  zstyle ':prezto:module:python:info:virtualenv' format '(%v)'
+
+  # Set vcs_info parameters.
+  zstyle ':vcs_info:*' enable git
+  zstyle ':vcs_info:*' check-for-changes true
+  zstyle ':vcs_info:*' get-revision false
+  zstyle ':vcs_info:*' use-simple true
+  zstyle ':vcs_info:*' unstagedstr ' %F{8}✗%f'
+  zstyle ':vcs_info:*' formats ' %F{8}%b%f %F{white}%.7i%f%u'
+  zstyle ':vcs_info:*' actionformats ' %F{8}%b%f %F{white}%.7i%f +%a%u'
+  zstyle ':vcs_info:git*+set-message:*' hooks git-status
+
+  # Define prompts.
+  PROMPT='
+%F{cyan}%~ %F{blue}${python_info[virtualenv]}
+%(?.%F{green}${editor_info[keymap]}%f.%F{red}${editor_info[keymap]}%f) '
+RPROMPT='${vcs_info_msg_0_} $(battery_charge)'
+
+}
+
+function prompt_pigmonkey_help {
+  cat <<EOH
+This prompt's last command exit status symbol is customizable:
+
+  prompt pigmonkey [<symbol>]
+
+If this option is not provided, the symbol defaults to ✳.
+EOH
+}
+
+function prompt_pigmonkey_preview {
+  local +h PROMPT='%# '
+  local +h RPROMPT=''
+  local +h SPROMPT=''
+
+  if (( $# > 0 )); then
+    prompt_preview_theme 'pigmonkey' "$@"
+  else
+    prompt_preview_theme 'pigmonkey'
+    print
+    prompt_preview_theme 'pigmonkey' "❯"
+    print
+    prompt_preview_theme 'pigmonkey' "$"
+  fi
+}
+
+prompt_pigmonkey_setup "$@"
+
