@@ -17,8 +17,8 @@ fi
 # Editors
 #
 
-export EDITOR='vim'
-export VISUAL='vim'
+export EDITOR='nano'
+export VISUAL='nano'
 export PAGER='less'
 
 #
@@ -71,26 +71,3 @@ if [[ -d "$TMPDIR" ]]; then
   fi
 fi
 
-#
-# Python
-#
-
-# Set the default project directory for virtualenvwrapper.
-export PROJECT_HOME="$HOME/projects"
-
-# Set the default virtualenvwrapper options.
-export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
-
-#
-# Notes
-#
-
-# Set the default note directory.
-export NOTEDIR=~/documents/notes
-
-#
-# Passwords
-#
-
-# Set the default password directory.
-export PASSDIR=~/pw
