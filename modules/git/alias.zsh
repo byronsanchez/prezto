@@ -181,8 +181,10 @@ alias gwx='git rm -r'
 alias gwX='git rm -rf'
 
 # Annex
+alias gx='git annex'
 alias gxa='git annex add'
 alias gxs='git annex sync'
 alias gxg='git annex get'
 alias gxd='git annex drop'
+alias gxc='git annex copy'
 
