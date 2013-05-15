@@ -187,4 +187,5 @@ alias gxs='git annex sync'
 alias gxg='git annex get'
 alias gxd='git annex drop'
 alias gxc='git annex copy'
+alias gxe='git annex edit'
 
