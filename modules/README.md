@@ -8,7 +8,7 @@ Load modules in *zpreztorc*. The order matters.
 Archive
 -------
 
-Provides functions to extract and list popular archive formats.
+Provides functions to list and extract archives.
 
 Command-Not-Found
 -----------------
@@ -70,6 +70,11 @@ History
 -------
 
 Sets history options and defines history aliases.
+
+Homebrew
+--------
+
+Defines Homebrew aliases.
 
 Macports
 --------
