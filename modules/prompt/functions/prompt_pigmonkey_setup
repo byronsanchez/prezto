@@ -69,8 +69,8 @@ function prompt_pigmonkey_setup {
   add-zsh-hook precmd prompt_pigmonkey_precmd
 
   # Set editor mode parameters.
-  zstyle ':prezto:module:editor:info:keymap:primary' format '✼'
-  zstyle ':prezto:module:editor:info:keymap:alternate' format '✎'
+  zstyle ':prezto:module:editor:info:keymap:primary' format '✼ '
+  zstyle ':prezto:module:editor:info:keymap:alternate' format '✎ '
 
   # Set Python virtualenv parameters.
   zstyle ':prezto:module:python:info:virtualenv' format '(%v)'
