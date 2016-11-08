@@ -59,6 +59,7 @@ alias pu='pushd'
 alias type='type -a'
 alias ssht='sshuttle --dns -vr pig-monkey.com 0/0'
 alias t='task'
+alias to='taskopen'
 alias bc='bc -ql'
 
 # ls
