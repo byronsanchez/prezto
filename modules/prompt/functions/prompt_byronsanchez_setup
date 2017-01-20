@@ -21,9 +21,9 @@
 function prompt_byronsanchezmod_precmd {
   # Check for untracked files or updated submodules since vcs_info does not.
   if [[ -n $(git ls-files --other --exclude-standard 2> /dev/null) ]]; then
-    branch_format="(${_prompt_byronsanchezmod_colors[1]}%b%f%u%C${_prompt_byronsanchezmod_colors[4]}●%f)"
+    branch_format="(${_prompt_byronsanchezmod_colors[1]}%b%f%u%c${_prompt_byronsanchezmod_colors[4]}●%f)"
   else
-    branch_format="(${_prompt_byronsanchezmod_colors[1]}%b%f%u%C)"
+    branch_format="(${_prompt_byronsanchezmod_colors[1]}%b%f%u%c)"
   fi
 
   zstyle ':vcs_info:*:prompt:*' formats "${branch_format}"
@@ -79,7 +79,7 @@ function prompt_byronsanchezmod_setup {
   #   %a - action (e.g. rebase-i)
   #   %R - repository path
   #   %S - path in the repository
-  local branch_format="(${_prompt_byronsanchezmod_colors[1]}%b%f%u%C)"
+  local branch_format="(${_prompt_byronsanchezmod_colors[1]}%b%f%u%c)"
   local action_format="(${_prompt_byronsanchezmod_colors[5]}%a%f)"
   local unstaged_format="${_prompt_byronsanchezmod_colors[2]}●%f"
   local staged_format="${_prompt_byronsanchezmod_colors[5]}●%f"
@@ -93,12 +93,18 @@ function prompt_byronsanchezmod_setup {
   zstyle ':vcs_info:*:prompt:*' formats "${branch_format}"
   zstyle ':vcs_info:*:prompt:*' nvcsformats   ""
 
+  # current jobs
+  # parens!
+  prompt_l_paren="%B%F{black}(%b%f"
+  prompt_r_paren="%B%F{black})%b%f"
+  current_jobs="%B%F{black}%j%b%f"
+
   # Set python-info parameters.
   zstyle ':prezto:module:python:info:virtualenv' format '(%v)'
 
   # Define prompts.
   PROMPT="
-${_prompt_byronsanchezmod_colors[3]}%n%f at ${_prompt_byronsanchezmod_colors[2]}%m%f in ${_prompt_byronsanchezmod_colors[5]}%1/%f "'${vcs_info_msg_0_}'"
+${_prompt_byronsanchezmod_colors[3]}%n%f at ${_prompt_byronsanchezmod_colors[2]}%m%f in ${_prompt_byronsanchezmod_colors[5]}%~%f "'${vcs_info_msg_0_}'"%(1j."'${prompt_l_paren}'""'${current_jobs}'""'${prompt_r_paren}'".)
 "'$python_info[virtualenv]'"$ "
   RPROMPT=''
 }
