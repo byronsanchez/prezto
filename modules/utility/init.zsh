@@ -57,7 +57,9 @@ alias p='${(z)PAGER}'
 alias po='popd'
 alias pu='pushd'
 alias type='type -a'
-alias t='todo'
+alias ssht='sshuttle --dns -vr pig-monkey.com 0/0'
+alias t='task'
+alias to='taskopen'
 alias bc='bc -ql'
 
 # ls
